@@ -1,3 +1,19 @@
+"""
+run instructions:
+conda activate Llama2_env
+git clone http:// ****
+pip install -r requirements.txt
+huggingface-ci login (?? only to download models from HuggingFace Hub)
+HF access token "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"
+python llama.py 
+
+python llama.py --model_name="TheBloke/Llama-2-7B-Chat-GGML" --file_name="llama-2-7b-chat.ggmlv3.q4_K_M.bin"
+
+Non-chat models:
+python llama.py --model_name="meta-llama/Llama-2-7b-hf"
+python llama.py --model_name="TheBloke/Llama-2-7B-GGML" --file_name="llama-2-7b.ggmlv3.q4_K_M.bin"
+"""
+
 import os
 import gradio as gr
 import fire
@@ -63,21 +79,26 @@ def run_ui(model, tokenizer, is_chat_model, model_type):
       clear = gr.Button("Clear")
 
       def user(user_message, history):
-          return "", history + [[user_message, None]]
+        # print("", history + [[user_message, None]])
+        return "", history + [[user_message, None]]
 
       def bot(history):
+          # print("history = ", history)
           if is_chat_model:
               instruction = format_to_llama_chat_style(history)
+              # print("instruction = ", instruction)
           else:
               instruction =  history[-1][0]
 
           history[-1][1] = ""
+          # print("history = ", history)
           kwargs = dict(temperature=0.6, top_p=0.9)
           if model_type == Model_Type.ggml:
               kwargs["max_tokens"] = 512
               for chunk in model(prompt=instruction, stream=True, **kwargs):
                   token = chunk["choices"][0]["text"]
                   history[-1][1] += token
+                  # print("history = ", history)
                   yield history
 
           else:
@@ -110,5 +131,8 @@ def main(model_name=None, file_name=None):
     model, tokenizer = init_auto_model_and_tokenizer(model_name, model_type, file_name)
     run_ui(model, tokenizer, is_chat_model, model_type)
 
+model_name="TheBloke/Llama-2-7B-Chat-GGML"
+file_name="llama-2-7b-chat.ggmlv3.q4_K_M.bin"
+
 if __name__ == '__main__':
-  fire.Fire(main)
+  fire.Fire(main(model_name=model_name, file_name=file_name))
