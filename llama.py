@@ -1,17 +1,38 @@
-"""
-run instructions:
-conda activate Llama2_env
-git clone http:// ****
-pip install -r requirements.txt
-huggingface-ci login (?? only to download models from HuggingFace Hub)
-HF access token "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"
-python llama.py 
+""" BASIC Llama Chatbot - download models from HuggingFace Hub
+Run the new Llama2 and Llama2-Chat models on your local computer
+Includes Gradio UI (no CSV upload)
 
+forked from https://github.com/thisserand/llama2_local
+
+Run instructions:
+1. conda activate Llama2_env (??)
+2. git clone https://github.com/thisserand/llama2_local
+3. pip install -r requirements.txt
+4. huggingface-cli login (only to download models from HuggingFace Hub)
+5. HF access token "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"
+6. If model is downloaded already run - python llama.py 
+
+Local file locations: /Users/wandacosta/llama2_local/models/
+
+Run commands depending on model type:
+
+Quantized GGML chat model:
 python llama.py --model_name="TheBloke/Llama-2-7B-Chat-GGML" --file_name="llama-2-7b-chat.ggmlv3.q4_K_M.bin"
 
-Non-chat models:
+Full precision (original) chat model:
+python llama.py --model_name="meta-llama/Llama-2-7b-chat-hf"
+
+Full precision (original) model (non chat version):
 python llama.py --model_name="meta-llama/Llama-2-7b-hf"
+
+Quantized GGML non-chat model:
 python llama.py --model_name="TheBloke/Llama-2-7B-GGML" --file_name="llama-2-7b.ggmlv3.q4_K_M.bin"
+
+Quantized GPTQ non-chat model:
+python llama.py --model_name="TheBloke/Llama-2-7B-GPTQ"
+
+Quantized GPTQ chat model:
+python llama.py --model_name="TheBloke/Llama-2-7b-Chat-GPTQ"
 """
 
 import os
@@ -131,8 +152,8 @@ def main(model_name=None, file_name=None):
     model, tokenizer = init_auto_model_and_tokenizer(model_name, model_type, file_name)
     run_ui(model, tokenizer, is_chat_model, model_type)
 
-model_name="TheBloke/Llama-2-7B-Chat-GGML"
-file_name="llama-2-7b-chat.ggmlv3.q4_K_M.bin"
+model_name="meta-llama/Llama-2-7b-chat-hf"
+# file_name="llama-2-7b-chat.ggmlv3.q4_K_M.bin"
 
 if __name__ == '__main__':
-  fire.Fire(main(model_name=model_name, file_name=file_name))
+  fire.Fire(main(model_name=model_name))
