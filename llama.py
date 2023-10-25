@@ -7,10 +7,11 @@ forked from https://github.com/thisserand/llama2_local
 Run instructions:
 1. conda activate Llama2_env (??)
 2. git clone https://github.com/thisserand/llama2_local
-3. pip install -r requirements.txt
-4. huggingface-cli login (only to download models from HuggingFace Hub)
-5. HF access token "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"
-6. If model is downloaded already run - python llama.py 
+3. cd llama2_local
+4. pip install -r requirements.txt
+5. huggingface-cli login (only to download models from HuggingFace Hub)
+6. HF access token "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"
+7. If model is downloaded already run - python llama.py 
 
 Local file locations: /Users/wandacosta/llama2_local/models/
 
