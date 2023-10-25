@@ -1,7 +1,10 @@
-'''from kaggle
+'''following kaggle walkthrough (trying to use local Llama2 model)
+https://www.kaggle.com/code/paultimothymooney/how-to-use-meta-research-s-llama-2-model
 
-conda activate test_env
-python kaggle_llama2.py
+Run Instructions:
+1. conda activate test_env
+2. install requirements?
+3. python kaggle_llama2.py
 
 '''
 import os

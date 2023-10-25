@@ -1,9 +1,13 @@
-'''Created by Wanda Costa on Oct 20, 2023
+''' Smart Analytics Assistant (SAA) using Llama2 and Streamlit - local Llama2 model with Streamlit UI (with csv upload)
+Created by Wanda Costa on Oct 20, 2023
 
-run instructions:
-conda activate Llama2_env
-python llama2_SAA_streamlit.py
-streamlit run llama2_SAA_streamlit.py
+I was trying to adapt the code from llama2_chat_streamlit.py to include csv upload, but couldn't get it work work
+so I started to try integrating code from AIAnytime on Github but decided to drop the approach and start over in new file.
+
+Run instructions:
+1. conda activate Llama2_env
+2. python llama2_SAA_streamlit.py
+3. streamlit run llama2_SAA_streamlit.py
 
 '''
 # import fire

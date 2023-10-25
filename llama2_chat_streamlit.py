@@ -1,9 +1,10 @@
-'''Created by Wanda Costa on Oct 19, 2023
+''' Llama2 Chatbot - local Llama2 model with Streamlit UI (no csv upload)
+Created by Wanda Costa on Oct 19, 2023
 
-conda activate Llama2_env
-python llama2_chat_streamlit.py
-
-streamlit run llama2_chat_streamlit.py
+Run Instructions:
+1. conda activate Llama2_env
+2. run - python llama2_chat_streamlit.py
+3. streamlit run llama2_chat_streamlit.py
 
 '''
 import fire
